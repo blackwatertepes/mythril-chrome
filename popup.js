@@ -2,10 +2,11 @@
 
 function checkContract() {
   let contractAddress = document.getElementById('contractAddress').value;
+  let contractNetwork = document.getElementById('contractNetwork').value;
   let results = document.getElementById("results");
   results.innerHTML = "Analyzing";
 
-  let url = `https://mythril-web.herokuapp.com/infura/mainnet/${contractAddress}`;
+  let url = `https://mythril-web.herokuapp.com/infura/${contractNetwork}/${contractAddress}`;
 
   let xhr = new XMLHttpRequest();
   xhr.open('GET', url, true);

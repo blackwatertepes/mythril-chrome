@@ -10,8 +10,11 @@
         width: 100%;
         margin-bottom: 10px;
       }
+      select {
+        width: 49%;
+      }
       button {
-        width: 100%;
+        width: 49%;
         margin-bottom: 10px;
       }
     </style>
@@ -20,6 +23,11 @@
     <h3>Mythril</h3>
     <p>Contract Address:</p>
     <input id="contractAddress" type="text" value="0x5c436ff914c458983414019195e0f4ecbef9e6dd"/>
+    <select id="contractNetwork" name="contractNetwork">
+      <option value="mainnet">Mainnet</option>
+      <option value="rinkeby">Rinkeby</option>
+      <!-- TODO <option value="custom">Custom RPC</option> -->
+    </select>
     <button id="checkContract">Analyze</button>
     <p id="results"></p>
 
