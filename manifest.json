@@ -3,6 +3,9 @@
   "name": "Mythril",
   "description": "Security analysis tool for Ethereum smart contracts",
   "version": "0.8.5",
+  "permissions": [
+    "storage"
+  ],
   "background": {
     "scripts": ["background.js"]
   },

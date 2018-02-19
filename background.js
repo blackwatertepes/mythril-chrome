@@ -7,11 +7,16 @@ chrome.browserAction.onClicked.addListener(function(tab) {
   });
 });
 
-// This block is new!
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
-    if( request.message === "open_new_tab" ) {
-      chrome.tabs.create({"url": request.url});
+    if (request.contractsFound) {
+      //chrome.browserAction.setBadgeText({text: request.contractsCount.toString()})
+      chrome.browserAction.setBadgeText({text: '?'})
+      chrome.browserAction.setBadgeBackgroundColor({color: "#999999"})
+    }
+    if (request.contractAnalyzed) {
+      chrome.browserAction.setBadgeText({text: request.contractsAnalyzed.toString()})
+      chrome.browserAction.setBadgeBackgroundColor({color: "#777777"})
     }
   }
 );

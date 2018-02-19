@@ -1,12 +1,30 @@
 'use strict';
 
+let contractAddressInput = document.getElementById('contractAddress');
+let contractNetworkInput = document.getElementById('contractNetwork');
+let contractsDisplay = document.getElementById("contractsDisplay");
+let contractCount = document.getElementById("contractCount");
+let results = document.getElementById("results");
+
+
+chrome.storage.local.get("contracts", function(contractsObj) {
+  contractsDisplay.innerHTML = "";
+  let contracts = Object.values(contractsObj);
+  contractCount.innerText = contracts.length;
+  chrome.storage.local.get(contracts[0], function(results) {
+    contractsDisplay.innerHTML += `
+      <div class="contractGroup">
+        <p class="contractAddress">${Object.keys(results)}</p>
+        <p class="contractResults">${Object.values(results)}</p>
+      </div>
+    `;
+  })
+});
+
 function checkContract() {
-  let contractAddress = document.getElementById('contractAddress').value;
-  let contractNetwork = document.getElementById('contractNetwork').value;
-  let results = document.getElementById("results");
   results.innerHTML = "Analyzing";
 
-  let url = `https://mythril-web.herokuapp.com/infura/${contractNetwork}/${contractAddress}`;
+  let url = `https://mythril-web.herokuapp.com/infura/${contractNetworkInput.value}/${contractAddressInput.value}`;
 
   let xhr = new XMLHttpRequest();
   xhr.open('GET', url, true);
@@ -29,9 +47,6 @@ function checkContract() {
   let loader = setInterval(function() {
     results.innerHTML += ".";
   }, 500);
-
-  // TODO set badge to the number of vulnerabilities found
-  //chrome.browserAction.setBadgeText({text: 'ON'});
 }
 
 document.getElementById('checkContract').addEventListener('click', checkContract);

@@ -17,12 +17,19 @@
         width: 49%;
         margin-bottom: 10px;
       }
+      .contractResults {
+        border: 1px solid #CCC;
+        background: #FFF;
+        color: #666;
+      }
     </style>
   </head>
   <body>
     <h3>Mythril</h3>
-    <p>Contract Address:</p>
-    <input id="contractAddress" type="text" value="0x5c436ff914c458983414019195e0f4ecbef9e6dd"/>
+    <p>Results from current page: <span id="contractCount">0</span> contracts found</p>
+    <p id="contractsDisplay"></p>
+    <p>Check another contract address:</p>
+    <input id="contractAddress" type="text" value=""/>
     <select id="contractNetwork" name="contractNetwork">
       <option value="mainnet">Mainnet</option>
       <option value="rinkeby">Rinkeby</option>
